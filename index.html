@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" type="image/png" href="ico.png" />
+
     <title>Apuração Eleitoral 2025</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gradient-to-br from-purple-600 to-indigo-700 min-h-screen p-4">
     <div class="max-w-7xl mx-auto">
         <!-- Header -->
@@ -25,15 +29,15 @@
         <!-- Status -->
         <div class="bg-white rounded-xl shadow-lg p-6 text-center">
             <div class="text-gray-600 text-sm">Última atualização</div>
-            <div class="text-green-600 font-bold text-lg mt-2" id="ultimaAtualizacao">21:02:51</div>
+            <div class="text-green-600 font-bold text-lg mt-2" id="ultimaAtualizacao">22:31:48</div>
         </div>
     </div>
 
     <script>
         const candidatos = [
-  { nome: "Cauê Renan Assunção Lopes", votos: 4 },
-  { nome: "Isabelle Siqueira Campos", votos: 5 },
-  { nome: "Ryan Ricardo de Souza", votos: 4 },
+  { nome: "Cauê Renan Assunção Lopes", votos: 0 },
+  { nome: "Isabelle Siqueira Campos", votos: 0 },
+  { nome: "Ryan Ricardo de Souza", votos: 0 },
   { nome: "Brancos/Nulos", votos: 2 },
 ];
 
@@ -43,23 +47,17 @@
             return num.toLocaleString('pt-BR');
         }
 
-        // function atualizarHorario() {
-        //     const agora = new Date();
-        //     const horario = agora.toLocaleTimeString('pt-BR');
-        //     document.getElementById('ultimaAtualizacao').textContent = horario;
-        // }
-
         function renderizarCandidatos() {
             const container = document.getElementById('candidatos');
             const totalVotosValidos = candidatos.reduce((sum, c) => sum + c.votos, 0);
-            
+
             container.innerHTML = candidatos
                 .sort((a, b) => b.votos - a.votos)
                 .map(candidato => {
-                    const percentual = totalVotosValidos > 0 
+                    const percentual = totalVotosValidos > 0
                         ? ((candidato.votos / totalVotosValidos) * 100).toFixed(2)
                         : 0;
-                    
+
                     return `
                         <div class="bg-white rounded-2xl shadow-xl p-6 transform transition hover:scale-105 hover:shadow-2xl">
                             <div class="flex justify-between items-center mb-4">
@@ -77,7 +75,7 @@
                         </div>
                     `;
                 }).join('');
-            
+
             document.getElementById('totalVotos').textContent = formatarNumero(totalVotosValidos);
         }
 
@@ -85,4 +83,5 @@
         atualizarHorario();
     </script>
 </body>
+
 </html>
